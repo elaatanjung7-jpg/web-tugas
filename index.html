@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Belajar PHP</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+        }
+        .box {
+            width: 300px;
+            margin: 50px auto;
+            background: blue;
+            color: white;
+            padding: 20px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <ol id="list"></ol>
+</div>
+
+<script>
+    let list = document.getElementById("list");
+
+    for (let i = 1; i <= 1000; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = "Ini adalah hari ke-" + i + " belajar PHP";
+        list.appendChild(li);
+    }
+</script>
+
+</body>
+</html>
