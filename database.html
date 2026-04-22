@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Database Sederhana</title>
+</head>
+<body>
+
+<h2>Data Mahasiswa</h2>
+
+<input type="text" id="nama" placeholder="Nama">
+<input type="text" id="nim" placeholder="NIM">
+<input type="text" id="jurusan" placeholder="Jurusan">
+<input type="text" id="alamat" placeholder="Alamat">
+
+<button onclick="tambah()">Tambah</button>
+
+<table border="1" id="tabel">
+    <tr>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Jurusan</th>
+        <th>Alamat</th>
+        <th>Aksi</th>
+    </tr>
+</table>
+
+<script>
+let data = JSON.parse(localStorage.getItem("db")) || [];
+
+function tampil() {
+    let tabel = document.getElementById("tabel");
+    tabel.innerHTML = `
+    <tr>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Jurusan</th>
+        <th>Alamat</th>
+        <th>Aksi</th>
+    </tr>`;
+
+    data.forEach((d, i) => {
+        tabel.innerHTML += `
+        <tr>
+            <td>${d.nama}</td>
+            <td>${d.nim}</td>
+            <td>${d.jurusan}</td>
+            <td>${d.alamat}</td>
+            <td>
+                <button onclick="hapus(${i})">Hapus</button>
+            </td>
+        </tr>`;
+    });
+}
+
+function tambah() {
+    let d = {
+        nama: nama.value,
+        nim: nim.value,
+        jurusan: jurusan.value,
+        alamat: alamat.value
+    };
+
+    data.push(d);
+    localStorage.setItem("db", JSON.stringify(data));
+    tampil();
+}
+
+function hapus(i) {
+    data.splice(i, 1);
+    localStorage.setItem("db", JSON.stringify(data));
+    tampil();
+}
+
+tampil();
+</script>
+
+</body>
+</html>
